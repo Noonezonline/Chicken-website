@@ -30,6 +30,7 @@
         }
 
         body {
+            cursor: none;
              font-family: 'Varela', sans-serif;
             margin: 0;
             color: var(--color-dark);
@@ -60,7 +61,7 @@
         .header {
             background-color: #ffffff;
             padding: 20px 0;
-            border-bottom: 5px solid var(--color-light-gray);
+            border-bottom: 5px solid gray;
             
             /* STICKY PROPERTIES */
             position: fixed;
@@ -87,8 +88,15 @@
             font-family: 'Varela', sans-serif;
             display:flex;
             justify-content: left;
-            gap: 3rem;
+            gap: 1rem;
             align-items: center;
+        }
+        #logophoto{
+            position: static;
+            height: 3rem;
+            width: 3rem;
+            border-radius: 1.5rem;
+        
         }
 
         .logo {
@@ -100,27 +108,50 @@
             text-decoration: none;
             border-bottom: 2px solid var(--color-accent); 
             transition: color 0.3s;
-            margin-right: 20vw;
+            margin-right: 15vw;
         }
         
         .nav a {
              
             text-decoration: none;
             color: var(--color-text-body);
-            margin-left: 2rem; /* Reduced margin for closer links */
+            margin-left: 1rem; /* Reduced margin for closer links */
             font-weight: 400;
             transition: color 0.3s;
+            border-style: solid;
+            padding: 0.5rem;
+            padding-top: 1rem;
+            border-width: 1px;
+            border-color: black;
+            border-radius: 3rem;
         }
 
         .nav a:hover {
             
-            color: var(--color-accent);
+            color:  black ;
+            background-color: whitesmoke;
+             transition: filter 0.4s ease; 
+            filter: invert(75%);
         }
         #buybutton{
-            color: white;
-            background-color: rgb(24, 24, 24);
-            padding: 0.5rem;
+            color: rgb(252, 2, 2);
+            background-color: rgb(255, 238, 2);
             border-radius: 1rem;
+        }
+        #buybutton:hover{
+            background-color: blue ;
+            color: rgb(255, 238, 0);
+        }
+        .icons{
+            position:static;
+            transition: filter 0.4s ease; 
+
+            height: 1.5rem;
+            width: 1.5rem;
+
+        }
+        .icons:hover {
+  filter: invert(100%);
         }
 
         /* HERO SECTION */
@@ -259,16 +290,26 @@
     <!-- 1. HEADER -->
     <header class="header">
         <div class="container header-content">
+            <img id="logophoto" src="logo.jpeg" alt="">
             <a href="#hero" class="logo">MEAT HEAVEN</a>
             <nav class="nav">
-                <a href="#hero">Home</a>
-                <a href="#products">Products</a>
-                <a href="#contact">Contact</a>
-                <a id="buybutton" href="#buy now">Buy Now</a>
+                <a href="#hero"><img class="icons"src="item.png" alt="">Items</a>
+                <a href="#products"><img class="icons"src="outlet.png" alt="">Outlets</a>
+                <a href="#contact"><img class="icons"src="information.png" alt="">Info</a>
+                <a href="#contact"><img class="icons"src="login.png" alt="">login</a>
+                <a id="buybutton" href="#buy now"><img class="icons"src="buy.png" alt="">Buy Now</a>
+                
             </nav>
         </div>
     </header>
+  <!-- Product showcase-->
 
+  <div class="itemscroll">
+    <div class="item"><img src="" alt=""></div>
+     <div class="item"> <img src="" alt=""></div>
+      <div class="item"><img src="" alt=""></div>
+       <div class="item"><img src="" alt=""></div>
+  </div>
     <!-- 2. HERO SECTION -->
     <section class="hero" id="hero">
         <div class="container">
