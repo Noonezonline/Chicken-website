@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meat Heaven - Clean Minimalist Site</title>
+    
+    <!-- Load Professional Fonts: Playfair Display for headings, Inter for body -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Federo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Varela&display=swap" rel="stylesheet">
+
+
+
+    
+    <style>
+        /* ========================================= */
+        /* 1. CORE STYLES & LAYOUT         */
+        /* ========================================= */
+        :root {
+            /* General Theme Colors */
+            --color-dark: #1c1c1c;
+            --color-light-gray: #ffffff;
+            --color-accent: #007bff; 
+            --color-text-body: #444; 
+            
+            /* Chicken Cursor Colors */
+            --chicken-yellow: #FFDA47;
+        }
+
+        body {
+             font-family: 'Varela', sans-serif;
+            margin: 0;
+            color: var(--color-dark);
+            background-color: #ffffff; /* Pure white background */
+            line-height: 1.6;
+            
+            /* IMPORTANT: Add padding to prevent content from hiding behind the fixed header */
+            padding-top: 65px; 
+        }
+
+        h1, h2, h3 {
+             font-family: 'Varela', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Utility: Central content container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ========================================= */
+        /* 2. WEBSITE COMPONENTS            */
+        /* ========================================= */
+        
+        /* HEADER (Fixed to the top) */
+        .header {
+            background-color: #ffffff;
+            padding: 20px 0;
+            border-bottom: 5px solid var(--color-light-gray);
+            
+            /* STICKY PROPERTIES */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000; /* Stays above content and chicken */
+            transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+        }
+
+        /* HEADER: Scrolled State */
+        .header.scrolled {
+            border-width: 0.05rem;;
+           
+        }
+        
+        /* Ensure text/links have contrast when background is dark */
+        .header.scrolled .logo{
+         color: #fdad017a;
+        }
+
+        
+        .header-content {
+            font-family: 'Varela', sans-serif;
+            display:flex;
+            justify-content: left;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Dela Gothic One', sans-serif; /* Updated logo font */
+            font-size: 1.8em;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--color-dark);
+            text-decoration: none;
+            border-bottom: 2px solid var(--color-accent); 
+            transition: color 0.3s;
+            margin-right: 20vw;
+        }
+        
+        .nav a {
+             
+            text-decoration: none;
+            color: var(--color-text-body);
+            margin-left: 2rem; /* Reduced margin for closer links */
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            
+            color: var(--color-accent);
+        }
+        #buybutton{
+            color: white;
+            background-color: rgb(24, 24, 24);
+            padding: 0.5rem;
+            border-radius: 1rem;
+        }
+
+        /* HERO SECTION */
+        #photo{
+           position: asolute;
+           width: 80vw;
+           height: auto;
+           
+        }
+        .hero {
+            text-align: center;
+            padding: 120px 0;
+            background-color: var(--color-light-gray);
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin: 0 auto 20px auto;
+            max-width: 800px;
+        }
+
+        .hero p {
+            font-size: 1.25em;
+            color: var(--color-text-body);
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--color-accent);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* FOOTER / ABOUT SECTION */
+        .footer {
+             font-family: 'Varela', sans-serif;
+   
+            color: var(--color-light-gray);
+            padding: 6px 0;
+            margin-top: 6px;
+        }
+
+        .footer h3 {
+             font-family: 'Varela', sans-serif;
+            font-size: 1.5em;
+            color: #0d0d0d;
+            margin-bottom: 15px;
+        }
+
+        .footer p {
+             font-family: 'Varela', sans-serif;
+            color: #030303;
+            max-width: 600px;
+            margin-bottom: 0;
+        }
+
+
+        /* ========================================= */
+        /* 3. CHICKEN CURSOR STYLES         */
+        /* ========================================= */
+
+        /* 1. WRAPPER (Handles the smooth lag - DO NOT TOUCH POSITIONING) */
+        #cursor-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            pointer-events: none; 
+            transform: translate(0px, 0px); 
+        }
+
+        /* 2. THE CHICKEN (Adjust size and idle animation here) */
+        #chicken-cursor {
+            position: absolute;
+            transform: translate(-50%, -50%); 
+            font-size: 40px; 
+            line-height: 1;
+            /* Default animation when stationary */
+            animation: subtleTilt 1s infinite alternate ease-in-out; 
+        }
+        
+        /* Animation when the chicken is STOPPED (subtle breathing/tilting) */
+        @keyframes subtleTilt {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            50% { transform: translate(-50%, -48%) rotate(-2deg); }
+            100% { transform: translate(-50%, -50%) rotate(0deg); }
+        }
+
+        /* Animation for a slow, full-body waddle */
+        @keyframes chickenWalk {
+            0% { transform: translate(-50%, -50%) rotateZ(0deg); }
+            25% { transform: translate(-55%, -55%) rotateZ(4deg); } 
+            50% { transform: translate(-50%, -48%) rotateZ(0deg); } 
+            75% { transform: translate(-45%, -55%) rotateZ(-4deg); } 
+            100% { transform: translate(-50%, -50%) rotateZ(0deg); }
+        }
+        
+        /* Class applied by JS when mouse is moving */
+        #chicken-cursor.is-walking {
+            animation: chickenWalk 1.5s infinite ease-in-out; 
+        }
+
+        /* 3. THE TRAILING CIRCLE (Adjust size and color here) */
+        #follower-circle {
+            position: absolute;
+            width: 50px; 
+            height: 50px; 
+            border-radius: 50%;
+            border: 3px solid var(--chicken-yellow); /* Uses CSS variable */
+            opacity: 0.6; 
+            transform: translate(-50%, -50%); 
+            transition: all 3s ease; 
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HTML structure for the custom chicken cursor -->
+    <div id="cursor-wrapper">
+        <div id="chicken-cursor">🐔</div>
+        <div id="follower-circle"></div>
+    </div>
+
+    <!-- 1. HEADER -->
+    <header class="header">
+        <div class="container header-content">
+            <a href="#hero" class="logo">MEAT HEAVEN</a>
+            <nav class="nav">
+                <a href="#hero">Home</a>
+                <a href="#products">Products</a>
+                <a href="#contact">Contact</a>
+                <a id="buybutton" href="#buy now">Buy Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 2. HERO SECTION -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <h1>Sustainably Sourced. Unmistakably Premium.</h1>
+            <p>Discover the finest, ethically raised proteins delivered directly to your kitchen. Quality without compromise.</p>
+            <a href="#products" class="cta-button">Explore Cuts</a>
+            <img src="Chicken.jpg" id="photo" alt="">
+        </div>
+    </section>
+
+    <!-- 3. MAIN CONTENT PLACEHOLDER -->
+    <main class="container">
+        <section class="content-section" id="products">
+            <h2>Our Signature Products</h2>
+            <p style="text-align: center; color: var(--color-text-body);">This section would contain product listings, images, and descriptions.</p>
+        </section>
+        
+        <section class="content-section" id="contact">
+            <h2>Get in Touch</h2>
+            <p style="text-align: center; color: var(--color-text-body);">This section would contain a contact form or contact information.</p>
+        </section>
+    </main>
+
+    <!-- 4. FOOTER / ABOUT SECTION -->
+    <footer class="footer">
+        <div class="container">
+            <h3>About Meat Heaven @Copyright 2025 Meat Heaven</h3>
+           
+        </div>
+    </footer>
+
+
+    <script>
+        // =========================================
+        // JAVASCRIPT LOGIC
+        // =========================================
+
+        // --- STICKY HEADER LOGIC ---
+        const header = document.querySelector('.header');
+        const scrollThreshold = 50; // Distance in pixels to scroll before changing color
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > scrollThreshold) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+
+        // --- CHICKEN CURSOR LOGIC ---
+        const cursorWrapper = document.getElementById('cursor-wrapper');
+        const chickenCursor = document.getElementById('chicken-cursor'); 
+        
+        let targetX = 0;
+        let targetY = 0;
+        let currentX = 0;
+        let currentY = 0;
+        
+        // 0.1 = very floaty/slow trail. 0.5 = snappy/short trail.
+        const smoothing = 0.1; 
+
+        let mouseTimeout;
+        let isWalking = false;
+        const stopDelay = 100; // Time in milliseconds before animation stops
+
+        // 1. Update target position whenever the mouse moves
+        document.addEventListener('mousemove', (e) => {
+            targetX = e.clientX;
+            targetY = e.clientY;
+
+            if (!isWalking) {
+                isWalking = true;
+                chickenCursor.classList.add('is-walking'); 
+            }
+
+            clearTimeout(mouseTimeout);
+
+            // Stop walking after delay
+            mouseTimeout = setTimeout(() => {
+                isWalking = false;
+                chickenCursor.classList.remove('is-walking'); 
+            }, stopDelay);
+        });
+
+        // 2. Animation loop for smooth following
+        function animateFollower() {
+            // Calculates a fraction of the distance remaining to the target
+            currentX += (targetX - currentX) * smoothing;
+            currentY += (targetY - currentY) * smoothing;
+            
+            // Applies the position to the wrapper
+            cursorWrapper.style.transform = `translate(${currentX}px, ${currentY}px)`;
+            
+            requestAnimationFrame(animateFollower);
+        }
+
+        // Start the animation
+        animateFollower();
+    </script>
+</body>
+</html>
